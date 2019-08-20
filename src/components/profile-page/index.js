@@ -1,14 +1,15 @@
 import React from 'react';
-import classes from './index.module.css';
+import './index.css';
 import {MyPost} from "./my-post/index";
 import {ProfileInfo} from "./profile-info";
 
 
-export const ProfilePage = () => {
+export const ProfilePage = (props) => {
+
     return (
         <div>
             <ProfileInfo/>
-            <MyPost/>
+            <MyPost posts={props.posts}/>
         </div>
     )
 };
