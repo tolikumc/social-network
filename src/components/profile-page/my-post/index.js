@@ -4,6 +4,12 @@ import './index.css'
 
 
 export const MyPost = (props) => {
+    const newPostElement = React.createRef();
+
+    const addPost = () =>{
+        const text = newPostElement.current.value;
+        props.addPostToState(text)
+    };
 
     return (
 
@@ -11,10 +17,10 @@ export const MyPost = (props) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea/>
+                    <textarea ref={newPostElement}/>
                 </div>
                 <div>
-                    <button>Add</button>
+                    <button onClick={addPost}>Add</button>
                 </div>
             </div>
             <div className="post-message">

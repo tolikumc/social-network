@@ -24,3 +24,12 @@ let state = {
 };
 
 export default state;
+
+
+export const addPostToState = (postMessage) => {
+    const newPost = {
+        id: 5,
+        postText: postMessage
+    };
+    state.profilePage.posts.push(newPost)
+};
