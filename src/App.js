@@ -19,7 +19,7 @@ const App = (props) => {
                 <LeftMenu/>
                 <div className='app-wrapper-content'>
                     <Route render={() => <ProfilePage posts={props.state.profilePage.posts}
-                                                      addPostToState={props.addPostToState}/>}
+                                                      dispatch={props.dispatch}/>}
                            path='/profile'/>
                     <Route render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs}
                                                   messages={props.state.dialogsPage.messages}/>} path='/dialogs'/>

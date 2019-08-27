@@ -9,7 +9,7 @@ export const ProfilePage = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPost posts={props.posts} addPostToState={props.addPostToState}/>
+            <MyPost posts={props.posts} dispatch={props.dispatch}/>
         </div>
     )
 };
