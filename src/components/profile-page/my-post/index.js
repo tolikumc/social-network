@@ -5,7 +5,7 @@ import './index.css'
 
 export const MyPost = (props) => {
     const newPostElement = React.createRef();
-
+    console.log(props);
     const onPostChange = () => {
         const text = newPostElement.current.value;
         props.updateNewPost(text)
@@ -21,7 +21,7 @@ export const MyPost = (props) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} value={props.newPostText} onChange={onPostChange}/>
+                    <textarea ref={newPostElement} defaultValue={props.newPostText} onChange={onPostChange}/>
                 </div>
                 <div>
                     <button onClick={onAddPost}>Add</button>
