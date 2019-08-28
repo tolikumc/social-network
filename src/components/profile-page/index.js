@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
-import {MyPost} from "./my-post/index";
 import {ProfileInfo} from "./profile-info";
+import {MyPostContainer} from "./my-post/container";
 
 
 export const ProfilePage = (props) => {
@@ -9,7 +9,7 @@ export const ProfilePage = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPost posts={props.posts} dispatch={props.dispatch}/>
+            <MyPostContainer posts={props.posts} dispatch={props.dispatch}/>
         </div>
     )
 };
