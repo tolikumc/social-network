@@ -21,7 +21,7 @@ export const MyPost = (props) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} defaultValue={props.newPostText} onChange={onPostChange}/>
+                    <textarea ref={newPostElement} value={props.newPostText} onChange={onPostChange}/>
                 </div>
                 <div>
                     <button onClick={onAddPost}>Add</button>

@@ -5,8 +5,9 @@ import {Message} from "./message";
 
 
 const Dialogs = (props) => {
-    const {newMessageBody} = props.state;
+    const {newMessageBody} = props.state.dialogsReducer;
     const {state} = props;
+    console.log(state);
     const onSendMessageClick = () => {
         props.sendMessage()
     };
@@ -31,7 +32,7 @@ const Dialogs = (props) => {
                     <div>
                         <div>
                             <textarea placeholder='Enter your message'
-                                      onChange={onNewMessageChange} defaultValue={newMessageBody}/>
+                                      onChange={onNewMessageChange} value={newMessageBody}/>
                         </div>
                         <div>
                             <button onClick={onSendMessageClick}>SEND</button>
