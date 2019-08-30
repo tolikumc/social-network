@@ -5,30 +5,30 @@ const SET_USER = 'SET_USER';
 
 const initialState = {
     users: [
-        {
-            id: 1,
-            photoUrl: '',
-            fullName: 'Ivan',
-            status: 'I am a boss',
-            location: {city: 'Lviv', country: 'Ukraine'},
-            followed: true
-        },
-        {
-            id: 2,
-            photoUrl: '',
-            fullName: 'Tolik',
-            status: 'I am a boss too',
-            location: {city: 'Kyiv', country: 'Ukraine'},
-            followed: true
-        },
-        {
-            id: 3,
-            fullName: 'Svyat',
-            photoUrl: '',
-            status: 'I am devil',
-            location: {city: 'Serpanok', country: 'Ukraine'},
-            followed: false
-        },
+        // {
+        //     id: 1,
+        //     photoUrl: '',
+        //     fullName: 'Ivan',
+        //     status: 'I am a boss',
+        //     location: {city: 'Lviv', country: 'Ukraine'},
+        //     followed: true
+        // },
+        // {
+        //     id: 2,
+        //     photoUrl: '',
+        //     fullName: 'Tolik',
+        //     status: 'I am a boss too',
+        //     location: {city: 'Kyiv', country: 'Ukraine'},
+        //     followed: true
+        // },
+        // {
+        //     id: 3,
+        //     fullName: 'Svyat',
+        //     photoUrl: '',
+        //     status: 'I am devil',
+        //     location: {city: 'Serpanok', country: 'Ukraine'},
+        //     followed: false
+        // },
     ]
 
 };

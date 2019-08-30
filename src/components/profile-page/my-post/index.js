@@ -5,7 +5,6 @@ import './index.css'
 
 export const MyPost = (props) => {
     const newPostElement = React.createRef();
-    console.log(props);
     const onPostChange = () => {
         const text = newPostElement.current.value;
         props.updateNewPost(text)
