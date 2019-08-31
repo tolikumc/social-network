@@ -1,4 +1,4 @@
-import Users from "./index";
+import UsersApiComponent from "./api-container";
 import {connect} from "react-redux";
 import {
     followActionCreator,
@@ -39,6 +39,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent);
 
 export default UsersContainer;
