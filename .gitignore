@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+*.log
 
 # testing
 /coverage
@@ -19,4 +20,7 @@
 .env.production.local
 
 npm-debug.log*
+
+# Optional eslint cache
+.eslintcache
 

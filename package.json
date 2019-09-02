@@ -15,10 +15,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "lint": "npm run eslint && npm run stylelint",
+    "eslint": "eslint --fix . && echo 'ESLint complete.'",
+    "stylelint": "stylelint --fix . && echo 'StyleLint complete.'"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "browserslist": {
     "production": [
