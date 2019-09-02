@@ -1,14 +1,17 @@
 import React from 'react';
 import * as axios from 'axios';
 import { Users } from './index';
+import Preloader from '../common/preloader';
 
 class UsersApiComponent extends React.Component {
   componentDidMount() {
+    this.props.setIsFetching(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
       )
       .then(res => {
+        this.props.setIsFetching(false);
         this.props.setUsers(res.data.items);
         this.props.setTotalUsersCount(res.data.totalCount);
       });
@@ -16,11 +19,13 @@ class UsersApiComponent extends React.Component {
 
   onPageChange = numberPage => {
     this.props.setCurrentPage(numberPage);
+    this.props.setIsFetching(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`
       )
       .then(res => {
+        this.props.setIsFetching(false);
         this.props.setUsers(res.data.items);
       });
   };
@@ -32,18 +37,22 @@ class UsersApiComponent extends React.Component {
       currentPage,
       users,
       follow,
-      unfollow
+      unfollow,
+      isFetching
     } = this.props;
     return (
-      <Users
-        totalUsersCount={totalUsersCount}
-        pageSize={pageSize}
-        currentPage={currentPage}
-        users={users}
-        onPageChange={this.onPageChange}
-        follow={follow}
-        unffollow={unfollow}
-      />
+      <>
+        {isFetching ? <Preloader /> : null}
+        <Users
+          totalUsersCount={totalUsersCount}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          users={users}
+          onPageChange={this.onPageChange}
+          follow={follow}
+          unffollow={unfollow}
+        />
+      </>
     );
   }
 }

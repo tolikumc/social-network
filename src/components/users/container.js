@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   followActionCreator,
   setCurrentPageActionCreate,
+  setIsFetchingActionCreate,
   setTotalUsersCountActionCreate,
   setUsersActionCreate,
   unfollowActionCreator
@@ -13,7 +14,8 @@ const mapStateToProps = state => {
     users: state.usersReducer.users,
     pageSize: state.usersReducer.pageSize,
     totalUsersCount: state.usersReducer.totalUserCount,
-    currentPage: state.usersReducer.currentPage
+    currentPage: state.usersReducer.currentPage,
+    isFetching: state.usersReducer.isFetching
   };
 };
 
@@ -33,6 +35,9 @@ const mapDispatchToProps = dispatch => {
     },
     setTotalUsersCount: total => {
       dispatch(setTotalUsersCountActionCreate(total));
+    },
+    setIsFetching: isFetching => {
+      dispatch(setIsFetchingActionCreate(isFetching));
     }
   };
 };
