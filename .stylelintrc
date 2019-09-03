@@ -1,7 +1,7 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-recommended", "stylelint-config-recommended-scss"],
   "plugins": ["stylelint-scss", "stylelint-prettier"],
-  "ignoreFiles": ["node_modules/**", "static/**", "**/*.json","**/*.svg"],
+  "ignoreFiles": ["node_modules/**", "static/**", "**/*.json","**/*.svg","**/*.jpg"],
   "rules": {
     "indentation": 2,
     "string-quotes": "single",

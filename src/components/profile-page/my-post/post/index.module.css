@@ -1,9 +1,9 @@
-.item{
-    color: greenyellow;
+.item {
+  color: #00ff00;
 }
 
-.item img{
-    width: 50px;
-    height: 50px;
-    border-right: 50px;
+.item img {
+  width: 50px;
+  height: 50px;
+  border-right: 50px;
 }

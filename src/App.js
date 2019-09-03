@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { Header } from './components/header';
 import { LeftMenu } from './components/left-page-menu';
 import { Route } from 'react-router-dom';
 import News from './components/news';
@@ -9,11 +8,12 @@ import Settings from './components/settings';
 import DialogsContainer from './components/dialogs/container';
 import UsersContainer from './components/users/container';
 import ProfileContainer from './components/profile-page/container';
+import HeaderContainer from './components/common/header/container';
 
 const App = () => {
   return (
     <div className="app-wrapper">
-      <Header />
+      <HeaderContainer />
       <LeftMenu />
       <div className="app-wrapper-content">
         <Route render={() => <ProfileContainer />} path="/profile/:userId?" />

@@ -1,19 +1,17 @@
-.dialogs{
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    background-color: lightslategray;
-}
-.dialogs-items{
-    padding: 10px;
-}
-.d-item{
-
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  background-color: #c0c0c0;
 }
 
-.d-item.active{
-    color: gold;
+.dialogs-items {
+  padding: 10px;
 }
 
-.dialogs-message{
-    padding: 10px;
+.d-item.active {
+  color: #d4af37;
+}
+
+.dialogs-message {
+  padding: 10px;
 }
