@@ -6,31 +6,33 @@ import { setUserDataActionCreator } from '../../../redux/auth-reducer';
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-      withCredentials: true
-    });
-    // .then(res => {
-    //   if (res.props.resultCode === 0) {
-    //     const { userId, login, email } = res.data.data;
-    //     this.props.setLogin(userId, login, email);
-    //   }
-    // });
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+        withCredentials: true
+      })
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          const { id, login, email } = res.data.data;
+          this.props.setLogin(id, login, email);
+        }
+      });
   }
   render() {
-    return <Header />;
+    return <Header {...this.props} />;
   }
 }
 
 const mapStateToProps = state => {
   return {
     isAuth: state.authReducer.isAuth,
-    loginName: state.authReducer.login
+    login: state.authReducer.login
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLogin: () => dispatch(setUserDataActionCreator())
+    setLogin: (id, login, email) =>
+      dispatch(setUserDataActionCreator(id, login, email))
   };
 };
 

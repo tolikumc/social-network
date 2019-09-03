@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './index.module.css';
 import { NavLink } from 'react-router-dom';
 
-export const Header = () => {
+export const Header = props => {
   return (
     <header className={classes.header}>
       <img
@@ -10,7 +10,7 @@ export const Header = () => {
         alt=""
       />
       <div className="login-block">
-        <NavLink to={'login'}>Login</NavLink>
+        {props.isAuth ? props.login : <NavLink to={'login'}>Login</NavLink>}
       </div>
     </header>
   );
