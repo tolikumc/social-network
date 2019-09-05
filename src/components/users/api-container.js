@@ -56,7 +56,7 @@ class UsersApiComponent extends React.Component {
           users={users}
           onPageChange={this.onPageChange}
           follow={follow}
-          unffollow={unfollow}
+          unfollow={unfollow}
         />
       </>
     );
