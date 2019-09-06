@@ -1,11 +1,11 @@
 import UsersApiComponent from './api-container';
 import { connect } from 'react-redux';
 import {
-  followActionCreator,
+  Follow,
   followProgressActionCreator,
   getUsers,
   setCurrentPageActionCreate,
-  unfollowActionCreator
+  Unfollow
 } from '../../redux/user-reducer';
 
 const mapStateToProps = state => {
@@ -21,11 +21,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    follow: userID => {
-      dispatch(followActionCreator(userID));
+    follow: userId => {
+      dispatch(Follow(userId));
     },
-    unfollow: userID => {
-      dispatch(unfollowActionCreator(userID));
+    unfollow: userId => {
+      dispatch(Unfollow(userId));
     },
     setCurrentPage: currentPage => {
       dispatch(setCurrentPageActionCreate(currentPage));
