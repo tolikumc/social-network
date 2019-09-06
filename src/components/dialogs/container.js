@@ -7,7 +7,11 @@ import Dialogs from './index';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
-  return { state };
+  return {
+    dialogs: state.dialogsReducer.dialogs,
+    messages: state.dialogsReducer.messages,
+    newMessageBody: state.dialogsReducer.newMessageBody
+  };
 };
 const mapDispatchToProps = dispatch => {
   return {
