@@ -1,16 +1,20 @@
+import { userAPI } from '../api/api';
+
 const FOLLOW_FOR_NEW_USER = 'FOLLOW_FOR_NEW_USER';
 const UNFOLLOW_FOR_USER = 'UNFOLLOW_FOR_USER';
 const SET_USER = 'SET_USER';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const initialState = {
   users: [],
   pageSize: 5,
   totalUserCount: 0,
   currentPage: 1,
-  isFetching: false
+  isFetching: false,
+  followingInProgress: {}
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -34,6 +38,14 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: action.isFetching
+      };
+    case TOGGLE_IS_FOLLOWING_PROGRESS:
+      return {
+        ...state,
+        followingInProgress: {
+          ...state.followingInProgress,
+          [action.payload.userId]: action.payload.isFetching
+        }
       };
     case FOLLOW_FOR_NEW_USER:
       return {
@@ -63,6 +75,12 @@ const usersReducer = (state = initialState, action) => {
 export const followActionCreator = userID => {
   return { type: FOLLOW_FOR_NEW_USER, userID };
 };
+export const followProgressActionCreator = (userId, isFetching) => {
+  return {
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    payload: { userId, isFetching }
+  };
+};
 export const unfollowActionCreator = userID => {
   return {
     type: UNFOLLOW_FOR_USER,
@@ -80,6 +98,17 @@ export const setTotalUsersCountActionCreate = total => {
 };
 export const setCurrentPageActionCreate = currentPage => {
   return { type: SET_CURRENT_PAGE, currentPage };
+};
+
+export const getUsers = (currentPage, pageSize) => {
+  return dispatch => {
+    dispatch(setIsFetchingActionCreate(true));
+    userAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(setIsFetchingActionCreate(false));
+      dispatch(setUsersActionCreate(data.items));
+      dispatch(setTotalUsersCountActionCreate(data.totalCount));
+    });
+  };
 };
 
 export default usersReducer;

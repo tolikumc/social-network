@@ -1,25 +1,14 @@
 import React from 'react';
 import { Users } from './index';
 import Preloader from '../common/preloader';
-import { userAPI } from '../../api/api';
 
 class UsersApiComponent extends React.Component {
   componentDidMount() {
-    this.props.setIsFetching(true);
-    userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-      this.props.setIsFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCount(data.totalCount);
-    });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChange = numberPage => {
-    this.props.setCurrentPage(numberPage);
-    this.props.setIsFetching(true);
-    userAPI.getUsers(numberPage, this.props.pageSize).then(data => {
-      this.props.setIsFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsers(numberPage, this.props.pageSize);
   };
 
   render() {
@@ -30,7 +19,9 @@ class UsersApiComponent extends React.Component {
       users,
       follow,
       unfollow,
-      isFetching
+      isFetching,
+      followProgress,
+      setFollowProgress
     } = this.props;
     return (
       <>
@@ -43,6 +34,8 @@ class UsersApiComponent extends React.Component {
           onPageChange={this.onPageChange}
           follow={follow}
           unfollow={unfollow}
+          followProgress={followProgress}
+          setFollowProgress={setFollowProgress}
         />
       </>
     );

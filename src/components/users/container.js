@@ -2,10 +2,9 @@ import UsersApiComponent from './api-container';
 import { connect } from 'react-redux';
 import {
   followActionCreator,
+  followProgressActionCreator,
+  getUsers,
   setCurrentPageActionCreate,
-  setIsFetchingActionCreate,
-  setTotalUsersCountActionCreate,
-  setUsersActionCreate,
   unfollowActionCreator
 } from '../../redux/user-reducer';
 
@@ -15,7 +14,8 @@ const mapStateToProps = state => {
     pageSize: state.usersReducer.pageSize,
     totalUsersCount: state.usersReducer.totalUserCount,
     currentPage: state.usersReducer.currentPage,
-    isFetching: state.usersReducer.isFetching
+    isFetching: state.usersReducer.isFetching,
+    followProgress: state.usersReducer.followingInProgress
   };
 };
 
@@ -27,17 +27,14 @@ const mapDispatchToProps = dispatch => {
     unfollow: userID => {
       dispatch(unfollowActionCreator(userID));
     },
-    setUsers: users => {
-      dispatch(setUsersActionCreate(users));
-    },
     setCurrentPage: currentPage => {
       dispatch(setCurrentPageActionCreate(currentPage));
     },
-    setTotalUsersCount: total => {
-      dispatch(setTotalUsersCountActionCreate(total));
+    setFollowProgress: (id, isFetching) => {
+      dispatch(followProgressActionCreator(id, isFetching));
     },
-    setIsFetching: isFetching => {
-      dispatch(setIsFetchingActionCreate(isFetching));
+    getUsers: (currentPage, pageSize) => {
+      dispatch(getUsers(currentPage, pageSize));
     }
   };
 };

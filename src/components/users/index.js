@@ -42,7 +42,9 @@ export const Users = props => {
             <div>
               {user.followed ? (
                 <button
+                  disabled={props.followProgress[user.id]}
                   onClick={() => {
+                    props.setFollowProgress(user.id, true);
                     axios
                       .delete(
                         `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
@@ -57,6 +59,7 @@ export const Users = props => {
                         if (res.data.resultCode === 0) {
                           props.unfollow(user.id);
                         }
+                        props.setFollowProgress(user.id, false);
                       });
                   }}
                 >
@@ -64,7 +67,9 @@ export const Users = props => {
                 </button>
               ) : (
                 <button
+                  disabled={props.followProgress[user.id]}
                   onClick={() => {
+                    props.setFollowProgress(user.id, true);
                     axios
                       .post(
                         `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
@@ -80,6 +85,7 @@ export const Users = props => {
                         if (res.data.resultCode === 0) {
                           props.follow(user.id);
                         }
+                        props.setFollowProgress(user.id, false);
                       });
                   }}
                 >
