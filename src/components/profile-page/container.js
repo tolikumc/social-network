@@ -1,18 +1,13 @@
 import React from 'react';
-import * as axios from 'axios';
 import { connect } from 'react-redux';
-import { userDetailActionCreator } from '../../redux/profile-reducer';
 import { Profile } from './index';
 import { withRouter } from 'react-router-dom';
+import { userDetail } from '../../redux/profile-reducer';
 
 export class ProfileContainer extends React.Component {
   componentDidMount() {
     const userId = this.props.match.params.userId;
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-      .then(res => {
-        this.props.userDetail(res.data);
-      });
+    this.props.getUserDetail(userId);
   }
 
   render() {
@@ -31,8 +26,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    userDetail: profile => {
-      dispatch(userDetailActionCreator(profile));
+    getUserDetail: userId => {
+      dispatch(userDetail(userId));
     }
   };
 };

@@ -1,3 +1,5 @@
+import { profileAPI } from '../api/api';
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_DETAIL = 'SET_USER_DETAIL';
@@ -52,9 +54,17 @@ export const updateNewPostActionCreator = text => {
     newText: text
   };
 };
-export const userDetailActionCreator = profile => {
+const userDetailActionCreator = profile => {
   return {
     type: SET_USER_DETAIL,
     profile
+  };
+};
+
+export const userDetail = userId => {
+  return dispatch => {
+    profileAPI.getProfile(userId).then(data => {
+      dispatch(userDetailActionCreator(data));
+    });
   };
 };
