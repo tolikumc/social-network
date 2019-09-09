@@ -11,11 +11,9 @@ const mapStateToProps = state => {
   return {
     dialogs: state.dialogsReducer.dialogs,
     messages: state.dialogsReducer.messages,
-    newMessageBody: state.dialogsReducer.newMessageBody,
-    isAuth: state.authReducer.isAuth
+    newMessageBody: state.dialogsReducer.newMessageBody
   };
 };
-
 
 const mapDispatchToProps = dispatch => {
   return {
