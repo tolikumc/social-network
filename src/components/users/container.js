@@ -8,6 +8,7 @@ import {
   Unfollow
 } from '../../redux/user-reducer';
 import { WithAuthRedirect } from '../../hoc/AuthRedirect';
+import { compose } from 'redux';
 
 const mapStateToProps = state => {
   return {
@@ -40,9 +41,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const UsersContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  WithAuthRedirect
 )(UsersApiComponent);
-
-export default WithAuthRedirect(UsersContainer);
