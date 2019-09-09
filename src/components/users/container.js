@@ -7,6 +7,7 @@ import {
   setCurrentPageActionCreate,
   Unfollow
 } from '../../redux/user-reducer';
+import { WithAuthRedirect } from '../../hoc/AuthRedirect';
 
 const mapStateToProps = state => {
   return {
@@ -44,4 +45,4 @@ const UsersContainer = connect(
   mapDispatchToProps
 )(UsersApiComponent);
 
-export default UsersContainer;
+export default WithAuthRedirect(UsersContainer);
