@@ -2,7 +2,8 @@ import React from 'react';
 
 export default class Status extends React.Component {
   state = {
-    editMode: false
+    editMode: false,
+    status: this.props.status
   };
 
   activeChangeStatus = () => {
@@ -12,26 +13,34 @@ export default class Status extends React.Component {
   };
   deactivateChangeStatus = () => {
     this.setState({
-      editMode: true
+      editMode: false
+    });
+    this.props.updateStatus(this.state.status);
+  };
+
+  onStatusChange = e => {
+    this.setState({
+      status: e.target.value
     });
   };
 
   render() {
-    const { editMode } = this.state;
+    const { editMode, status } = this.state;
     return (
       <>
         {editMode ? (
           <div>
             <input
-              value={this.props.status}
+              value={status}
               onBlur={this.deactivateChangeStatus}
               autoFocus={true}
+              onChange={this.onStatusChange}
             />
           </div>
         ) : (
           <div>
             <span onDoubleClick={this.activeChangeStatus}>
-              {this.props.status}
+              {status || 'Here your status'}
             </span>
           </div>
         )}

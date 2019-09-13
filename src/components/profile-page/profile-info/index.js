@@ -13,7 +13,7 @@ export const ProfileInfo = props => {
         <img src={props.profile.photos.large} alt="sdsa" />
       </div>
       <div className="p-info">ava + desc</div>
-      <Status status="sssssss" />
+      <Status status={props.status.data} updateStatus={props.updateStatus} />
     </div>
   );
 };
