@@ -1,16 +1,11 @@
 import React from 'react';
 import { Post } from './post';
 import './index.css';
+import { AddPost } from './post-form';
 
 export const MyPost = props => {
-  const newPostElement = React.createRef();
-  const onPostChange = () => {
-    const text = newPostElement.current.value;
-    props.updateNewPost(text);
-  };
-
-  const onAddPost = () => {
-    props.addPost();
+  const onAddPost = post => {
+    props.addPost(post.undefined);
   };
 
   return (
@@ -18,14 +13,7 @@ export const MyPost = props => {
       <h3>My post</h3>
       <div>
         <div>
-          <textarea
-            ref={newPostElement}
-            value={props.newPostText}
-            onChange={onPostChange}
-          />
-        </div>
-        <div>
-          <button onClick={onAddPost}>Add</button>
+          <AddPost onSubmit={onAddPost} />
         </div>
       </div>
       <div className="post-message">

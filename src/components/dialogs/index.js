@@ -2,15 +2,12 @@ import React from 'react';
 import './index.css';
 import { DialogItem } from './dialog';
 import { Message } from './message';
+import { AddMessageForm } from './message-form';
 
 const Dialogs = props => {
-  const { dialogs, messages, newMessageBody } = props;
-  const onSendMessageClick = () => {
-    props.sendMessage();
-  };
-  const onNewMessageChange = e => {
-    const body = e.target.value;
-    props.updateNewMessageBody(body);
+  const { dialogs, messages } = props;
+  const addNewMessage = messageData => {
+    props.sendMessage(messageData.textarea);
   };
 
   return (
@@ -28,16 +25,7 @@ const Dialogs = props => {
             ))}
           </div>
           <div>
-            <div>
-              <textarea
-                placeholder="Enter your message"
-                onChange={onNewMessageChange}
-                value={newMessageBody}
-              />
-            </div>
-            <div>
-              <button onClick={onSendMessageClick}>SEND</button>
-            </div>
+            <AddMessageForm onSubmit={addNewMessage} />
           </div>
         </div>
       </div>
