@@ -23,6 +23,13 @@ export default class Status extends React.Component {
       status: e.target.value
     });
   };
+  componentDidUpdate(prevProps) {
+    if (prevProps.status !== this.state.status) {
+      this.setState({
+        status: this.props.status
+      });
+    }
+  }
 
   render() {
     const { editMode, status } = this.state;
