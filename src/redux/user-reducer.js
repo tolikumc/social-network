@@ -100,9 +100,10 @@ export const setCurrentPageActionCreate = currentPage => {
   return { type: SET_CURRENT_PAGE, currentPage };
 };
 
-export const getUsers = (currentPage, pageSize) => {
+export const getRequestUsers = (currentPage, pageSize) => {
   return dispatch => {
     dispatch(setIsFetchingActionCreate(true));
+    dispatch(setCurrentPageActionCreate(currentPage));
     userAPI.getUsers(currentPage, pageSize).then(data => {
       dispatch(setIsFetchingActionCreate(false));
       dispatch(setUsersActionCreate(data.items));

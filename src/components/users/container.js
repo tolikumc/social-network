@@ -3,21 +3,40 @@ import { connect } from 'react-redux';
 import {
   Follow,
   followProgressActionCreator,
-  getUsers,
+  getRequestUsers,
   setCurrentPageActionCreate,
   Unfollow
 } from '../../redux/user-reducer';
 import { WithAuthRedirect } from '../../hoc/AuthRedirect';
 import { compose } from 'redux';
+import {
+  getCurrentPage,
+  getFetching,
+  getFollowingProgress,
+  getPageSize,
+  getTotalUserCount,
+  getUsers
+} from '../../redux/users-selectors';
+
+// const mapStateToProps = state => {
+//   return {
+//     users: state.usersReducer.users,
+//     pageSize: state.usersReducer.pageSize,
+//     totalUsersCount: state.usersReducer.totalUserCount,
+//     currentPage: state.usersReducer.currentPage,
+//     isFetching: state.usersReducer.isFetching,
+//     followProgress: state.usersReducer.followingInProgress
+//   };
+// };
 
 const mapStateToProps = state => {
   return {
-    users: state.usersReducer.users,
-    pageSize: state.usersReducer.pageSize,
-    totalUsersCount: state.usersReducer.totalUserCount,
-    currentPage: state.usersReducer.currentPage,
-    isFetching: state.usersReducer.isFetching,
-    followProgress: state.usersReducer.followingInProgress
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUserCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getFetching(state),
+    followProgress: getFollowingProgress(state)
   };
 };
 
@@ -36,7 +55,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(followProgressActionCreator(id, isFetching));
     },
     getUsers: (currentPage, pageSize) => {
-      dispatch(getUsers(currentPage, pageSize));
+      dispatch(getRequestUsers(currentPage, pageSize));
     }
   };
 };
