@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import Preloader from '../../common/preloader';
-import Status from './status';
+import { Status } from './status';
 
 export const ProfileInfo = props => {
   if (!props.profile || props.profile.length === 0) {
